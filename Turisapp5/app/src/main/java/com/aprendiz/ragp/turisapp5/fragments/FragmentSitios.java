@@ -6,10 +6,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.aprendiz.ragp.turisapp5.R;
+import com.aprendiz.ragp.turisapp5.models.AdapterT;
+import com.aprendiz.ragp.turisapp5.models.GestorDB;
+import com.aprendiz.ragp.turisapp5.models.Sitios;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +32,9 @@ public class FragmentSitios extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recyclerView;
+    Sitios sitios;
+    int position;
+    int valorcito=0;
 
 
     public FragmentSitios() {
@@ -57,7 +66,27 @@ public class FragmentSitios extends Fragment {
         View view= inflater.inflate(R.layout.fragment_fragment_sitios, container, false);
         recyclerView = view.findViewById(R.id.recyclerS);
 
+
         return view;
+    }
+
+    public void inputAdapterR(){
+        GestorDB gestorDB = new GestorDB(getContext());
+        List<Sitios> sitiosList = gestorDB.sitiosList();
+
+        position= getActivity().getWindowManager().getDefaultDisplay().getRotation();
+        if (position== Surface.ROTATION_0 || position== Surface.ROTATION_180) {
+            if (valorcito==0) {
+                AdapterT adapterT = new AdapterT(sitiosList, R.layout.item_list);
+            }else {
+                AdapterT adapterT = new AdapterT(sitiosList, R.layout.item_grid);
+            }
+        }
+
+        if (position== Surface.ROTATION_270 || position== Surface.ROTATION_90) {
+            AdapterT adapterT = new AdapterT(sitiosList, R.layout.item_land);
+        }
+
     }
 
 }

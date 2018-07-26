@@ -113,7 +113,7 @@ public class GestorDB extends SQLiteOpenHelper{
     public List<Sitios> sitiosList(){
         List<Sitios> results = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM LUGARES WHERE LUGAR ='sitio'; ",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM LUGARES WHERE LUGAR='sitio'; ",null);
         if (cursor.moveToFirst()){
             do {
                 Sitios sitios = new Sitios();
@@ -125,7 +125,7 @@ public class GestorDB extends SQLiteOpenHelper{
                 sitios.setLatitud(Float.parseFloat(cursor.getString(5)));
                 sitios.setLongitud(Float.parseFloat(cursor.getString(6)));
                 sitios.setLugar(cursor.getString(7));
-
+                results.add(sitios);
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -150,6 +150,7 @@ public class GestorDB extends SQLiteOpenHelper{
                 sitios.setLatitud(Float.parseFloat(cursor.getString(5)));
                 sitios.setLongitud(Float.parseFloat(cursor.getString(6)));
                 sitios.setLugar(cursor.getString(7));
+                results.add(sitios);
 
             }while (cursor.moveToNext());
         }
@@ -174,6 +175,7 @@ public class GestorDB extends SQLiteOpenHelper{
                 sitios.setLatitud(Float.parseFloat(cursor.getString(5)));
                 sitios.setLongitud(Float.parseFloat(cursor.getString(6)));
                 sitios.setLugar(cursor.getString(7));
+                results.add(sitios);
 
             }while (cursor.moveToNext());
         }
