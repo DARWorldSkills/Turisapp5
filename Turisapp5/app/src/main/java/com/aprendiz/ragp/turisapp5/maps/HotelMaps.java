@@ -52,7 +52,7 @@ public class HotelMaps extends FragmentActivity implements OnMapReadyCallback {
             LatLng tmp = new LatLng(sitios.getLatitud(),sitios.getLongitud());
             mMap.addMarker(new MarkerOptions().position(tmp).title(sitios.getNombre()));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tmp,10));
-            
+
         }
     }
 }
