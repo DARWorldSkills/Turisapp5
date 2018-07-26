@@ -4,12 +4,16 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
 import com.aprendiz.ragp.turisapp5.R;
+import com.aprendiz.ragp.turisapp5.models.GestorDB;
+import com.aprendiz.ragp.turisapp5.models.Sitios;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 public class SitiosMaps extends FragmentActivity implements OnMapReadyCallback {
 
@@ -39,9 +43,14 @@ public class SitiosMaps extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        GestorDB gestorDB = new GestorDB(this);
+        List<Sitios> sitiossList = gestorDB.sitiosList();
+        for (int i=0; i<sitiossList.size();i++){
+            Sitios sitios =sitiossList.get(i);
+            LatLng tmp = new LatLng(sitios.getLatitud(),sitios.getLongitud());
+            mMap.addMarker(new MarkerOptions().position(tmp).title(sitios.getNombre()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tmp,10));
+
+        }
     }
 }
