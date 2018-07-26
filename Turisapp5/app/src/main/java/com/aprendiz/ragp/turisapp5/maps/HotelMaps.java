@@ -47,7 +47,6 @@ public class HotelMaps extends FragmentActivity implements OnMapReadyCallback {
         GestorDB gestorDB = new GestorDB(this);
         List<Sitios> sitiosList = gestorDB.hotelList();
         for (int i=0; i<sitiosList.size();i++){
-
             Sitios sitios =sitiosList.get(i);
             LatLng tmp = new LatLng(sitios.getLatitud(),sitios.getLongitud());
             mMap.addMarker(new MarkerOptions().position(tmp).title(sitios.getNombre()));
