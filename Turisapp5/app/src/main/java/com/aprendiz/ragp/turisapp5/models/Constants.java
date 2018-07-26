@@ -1,5 +1,7 @@
 package com.aprendiz.ragp.turisapp5.models;
 
+import com.aprendiz.ragp.turisapp5.R;
+
 public class Constants {
     public static final int []listaSitios ={
             R.drawable.portal_del_quindio,

@@ -33,7 +33,7 @@ public class GestorDB extends SQLiteOpenHelper{
 
     public void inputSitios(Context context) throws IOException {
         String linea;
-        InputStream is = context.getResources().openRawResource(R.raw.sitiosm);
+        InputStream is = context.getResources().openRawResource(R.raw.sitio);
         SQLiteDatabase db = getWritableDatabase();
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         if (is!=null){
