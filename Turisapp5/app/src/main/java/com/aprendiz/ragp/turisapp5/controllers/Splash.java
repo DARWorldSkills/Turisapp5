@@ -25,7 +25,7 @@ public class Splash extends AppCompatActivity {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash.this, Todos.class);
+                Intent intent = new Intent(Splash.this, MenuT.class);
                 startActivity(intent);
                 finish();
             }
