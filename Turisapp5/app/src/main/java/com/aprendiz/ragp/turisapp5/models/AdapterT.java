@@ -2,6 +2,7 @@ package com.aprendiz.ragp.turisapp5.models;
 
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,11 +17,24 @@ public class AdapterT extends RecyclerView.Adapter<AdapterT.Holder>{
     }
     int item;
 
+    public AdapterT(List<Sitios> sitiosList, int item) {
+        this.sitiosList = sitiosList;
+        this.item = item;
+    }
 
+    public OnItemClickListener getMlistener() {
+        return mlistener;
+    }
+
+    public void setMlistener(OnItemClickListener mlistener) {
+        this.mlistener = mlistener;
+    }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(item,parent,false);
+        Holder holder = new Holder(view,mlistener);
+        return holder;
     }
 
     @Override
@@ -30,11 +44,11 @@ public class AdapterT extends RecyclerView.Adapter<AdapterT.Holder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return sitiosList.size();
     }
 
     public class Holder extends RecyclerView.ViewHolder {
-        public Holder(View itemView) {
+        public Holder(View itemView, OnItemClickListener mlistener) {
             super(itemView);
         }
     }
